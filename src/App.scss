@@ -1,0 +1,39 @@
+.root {
+	position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+	background-color: #ffa4a4;
+
+	.text {
+		color: #ce4a4a;
+		padding-top: 35%;
+		font-size: 40px;
+		text-align: center;
+	}
+
+	.boxes{
+		display: block;
+		padding-left: 15%;
+		padding-right: 15%;
+		padding-top: 15%;
+		.checkbox {
+			display: inline-block;
+			margin-left: 10%;
+			margin-right: 10%;
+			width: 200px;
+			height: 200px;
+			background: fill;
+			background-size: cover;
+		}
+
+		.checkbox.checked {
+			background-image: url('../img/checked-checkbox.png');
+		}
+
+		.checkbox.unchecked {
+			background-image: url('../img/unchecked-checkbox.png');
+		}
+	}
+}
