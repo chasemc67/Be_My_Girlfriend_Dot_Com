@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Checkbox from './Checkbox';
 
 export default class App extends Component {
   render() {
@@ -9,8 +10,8 @@ export default class App extends Component {
       		</div>
 
       		<div className="boxes">
-      			<div className="checkbox checked" id="yesBox"/>
-      			<div className="checkbox unchecked" id="noBox"/> 
+      			<Checkbox idName = "yesBox" boxText="Yes!"/>
+      			<Checkbox idName = "noBox" boxText="No Way!"/>
       		</div>
       	</div>
     );
