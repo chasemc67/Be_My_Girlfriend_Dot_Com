@@ -15,7 +15,7 @@ export default class Checkbox extends Component {
 
 	render() {
 		var style = {
-			display: "inline"
+			display: "block"
 		};
 
 		var classes;
