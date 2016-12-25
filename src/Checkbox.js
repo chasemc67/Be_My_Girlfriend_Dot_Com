@@ -4,21 +4,28 @@ import classnames from 'classnames';
 export default class Checkbox extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {checkedState: "unchecked"};
 
 		this.click = this.click.bind(this);
 	}
 
 	click() {
-		console.log("Clicked!");
-		this.setState({checkedState: "checked"});
+		console.log("Box is clicked");
+		this.props.clickHandler();
 	}
 
 	render() {
 		var style = {
 			display: "inline"
 		};
-		var classes = classnames("checkbox", this.state.checkedState);
+
+		var classes;
+
+		if (this.props.selected) {
+			classes = classnames("checkbox", "checked");
+		} else {
+			classes = classnames("checkbox", "unchecked");
+		}
+
 
 		return(
 			<div style={style}>
