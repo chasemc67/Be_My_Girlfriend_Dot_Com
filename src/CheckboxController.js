@@ -46,10 +46,10 @@ export default class CheckboxController extends Component {
 	render() {
 		return(
 			<div className="boxes">
-				<div className="box" style={{display: "inline-block"}}>
+				<div className="box left" style={{display: "inline-block"}}>
 	  				<Checkbox idName = "yesBox" boxText="Yes!" clickHandler={this.yesBoxClickHandler} selected={this.state.yesChecked}/>
 	  			</div>
-	  			<div className="box" style={{display: "inline-block"}}>
+	  			<div className="box right" style={{display: "inline-block"}}>
 	  				<Checkbox idName = "noBox" boxText="No Way!" clickHandler={this.noBoxClickHandler} selected={this.state.noChecked}/>
 	  			</div>
 	      	</div>
