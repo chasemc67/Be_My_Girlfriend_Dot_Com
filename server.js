@@ -22,15 +22,15 @@ app.get('*', function(req, res) {
 app.post('/contact', function(req, res, next) {
 	console.log("Post to contact page");
 	// create reusable transporter object using the default SMTP transport
-	var transporter = nodemailer.createTransport('smtps://mailer100124@gmail.com:P@ssw0rd100124@smtp.gmail.com');
+	// var transporter = nodemailer.createTransport('smtps://mailer100124@gmail.com:P@ssw0rd100124@smtp.gmail.com');
+	var transporter = nodemailer.createTransport('smtps://mailer100124@gmail.com:P@ssw0rd100124');
 
 	// setup e-mail data with unicode symbols
 	var mailOptions = {
 	    from: '"Node Mailer" <mailer100124@gmail.com>', // sender address
 	    to: 'chasemc67@gmail.com', // list of receivers
 	    subject: 'Hello ✔', // Subject line
-	    text: 'Hello world ?', // plaintext body
-	    html: '<b>Hello world ?</b>' // html body
+	    text: req.body.message // plaintext body
 	};
 
 	// send mail with defined transport object
