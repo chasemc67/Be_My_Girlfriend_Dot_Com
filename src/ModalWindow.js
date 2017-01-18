@@ -17,6 +17,25 @@ export default class ModalWindow extends React.Component {
         accepted: true,
         declined: false
       });
+
+      $.ajax({
+      type: 'POST',
+      url: '/contact',
+      data: {
+        name: this.state.name, 
+        email: this.state.email, 
+        phone: this.state.phone,
+        contactType: this.state.contactType,
+        message: this.state.message
+      }
+    })
+      .done((data) => {
+        console.log(data.message);
+      })
+      .fail((jqXhr) => {
+        // console.log(jqXhr.responseJSON.message);
+        console.log("Post request failed");
+      });
     }
 
     declineTerms() {

@@ -3,6 +3,9 @@ var webpack = require('webpack');
 var express = require('express');
 var config = require('./webpack.config');
 
+var bodyParser = require('body-parser')
+var nodemailer = require('nodemailer')
+
 var app = express();
 var compiler = webpack(config);
 
@@ -14,6 +17,30 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.post('/contact', function(req, res, next) {
+	console.log("Post to contact page");
+	// create reusable transporter object using the default SMTP transport
+	var transporter = nodemailer.createTransport('smtps://mailer100124@gmail.com:P@ssw0rd100124@smtp.gmail.com');
+
+	// setup e-mail data with unicode symbols
+	var mailOptions = {
+	    from: '"Node Mailer" <mailer100124@gmail.com>', // sender address
+	    to: 'chasemc67@gmail.com', // list of receivers
+	    subject: 'Hello ✔', // Subject line
+	    text: 'Hello world ?', // plaintext body
+	    html: '<b>Hello world ?</b>' // html body
+	};
+
+	// send mail with defined transport object
+	transporter.sendMail(mailOptions, function(error, info){
+	    if(error){
+	        return console.log(error);
+	    }
+	    console.log('Message sent: ' + info.response);
+	});
+	res.send({message: "email sent successfully"});
 });
 
 var isProduction = process.env.NODE_ENV === 'production';
