@@ -16,10 +16,13 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(3000, function(err) {
+var isProduction = process.env.NODE_ENV === 'production';
+var port = isProduction ? process.env.PORT : 3000;
+
+app.listen(port, function(err) {
   if (err) {
     return console.error(err);
   }
 
-  console.log('Listening at http://localhost:3000/');
+  console.log('Listening at: ' + port);
 })
