@@ -25,7 +25,13 @@ app.post('/contact', function(req, res, next) {
 	console.log("Post to contact page");
 	// create reusable transporter object using the default SMTP transport
 	// var transporter = nodemailer.createTransport('smtps://mailer100124@gmail.com:P@ssw0rd100124@smtp.gmail.com');
-	var transporter = nodemailer.createTransport('smtps://mailer100124@gmail.com:P@ssw0rd100124');
+	var transporter = nodemailer.createTransport({
+		service: 'Gmail',
+		auth: {
+			user: 'mailer100124@gmail.com',
+			pass: 'P@ssw0rd100124'
+		}
+	});
 
 	// setup e-mail data with unicode symbols
 	var mailOptions = {
