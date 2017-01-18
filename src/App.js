@@ -7,13 +7,21 @@ import ModalWindow from './ModalWindow';
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {modalOpen: false};
+    this.state = {
+      modalOpen: false,
+      answer: null
+    };
 
     this.submitHandler = this.submitHandler.bind(this);
     this.closeModal = this.closeModal.bind(this);
+
+    this.checkboxCallback = this.checkboxCallback.bind(this);
   }
 
   submitHandler() {
+    if (this.state.answer == null) {
+      return;
+    }
     console.log("Openning modal");
     this.setState({modalOpen: true});
   }
@@ -23,6 +31,10 @@ export default class App extends Component {
     this.setState({modalOpen: false});
   }
 
+  checkboxCallback(answer){
+    this.setState({answer: answer});
+  }
+
   render() {
     return (
     	<div className="root">
@@ -30,10 +42,10 @@ export default class App extends Component {
       			<h1>Laura, will you be my girlfriend?</h1>
       	</div>
 
-      		<CheckboxController />
+      		<CheckboxController callback={this.checkboxCallback} />
 
           <SubmitButton clickHandler={this.submitHandler}/>
-          <ModalWindow isOpen={this.state.modalOpen} closeModal={this.closeModal} />
+          <ModalWindow modalType={this.state.answer} isOpen={this.state.modalOpen} closeModal={this.closeModal} />
       </div>
     );
   }

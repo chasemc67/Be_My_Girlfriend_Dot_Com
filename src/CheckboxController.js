@@ -21,11 +21,13 @@ export default class CheckboxController extends Component {
 				yesChecked: false,
 				noChecked: false
 			});
+			this.props.callback(null)
 		} else {
 			this.setState({
 				yesChecked: true,
 				noChecked: false
 			});
+			this.props.callback("terms")
 		}
 	}
 
@@ -35,11 +37,13 @@ export default class CheckboxController extends Component {
 				yesChecked: false,
 				noChecked: false
 			});
+			this.props.callback(null)
 		} else {
 			this.setState({
 				yesChecked: false,
 				noChecked: true
 			});
+			this.props.callback("declined")
 		}
 	}
 

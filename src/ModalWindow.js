@@ -4,14 +4,33 @@ import Modal from "react-modal";
 export default class ModalWindow extends React.Component {
     constructor () {
       super();
+      this.state = {
+        accepted: false,
+        declined: false
+      }
+      this.acceptTerms = this.acceptTerms.bind(this);
+      this.declineTerms = this.declineTerms.bind(this);
     }
 
-    render () {
-      return (
-        <div>
-          <Modal contentLabel={"Terms and Conditions"} isOpen={this.props.isOpen} style={{overlay: {backgroundColor: 'rgba(0, 0, 0, 0.4)'}}}>
-            <h1>Terms and Conditions</h1>
-            <button className="closeModalButton" onClick={this.props.closeModal}>Close</button>
+    acceptTerms() {
+      this.setState({
+        accepted: true,
+        declined: false
+      });
+    }
+
+    declineTerms() {
+     this.setState({
+        declined: true,
+        accepted: false
+      }); 
+    }
+
+    getText() {
+      if (this.props.modalType == "terms" && this.state.accepted == false && this.state.declined == false) {
+        return (
+          <div>
+          <h1>Terms and Conditions</h1>
             <p>
               1. Genuinely liking and respecting each other <br/><br/>
               2. Doing things just to make each other happy <br/><br/>
@@ -25,13 +44,41 @@ export default class ModalWindow extends React.Component {
               10. A satisfying sexual relationship <br/><br/>
           </p>
 
-          <div className="acceptButton" style={{display: "inline-block", float: "left", marginLeft: "15%"}} onClick={this.props.clickHandler}>
+          <div className="acceptButton" style={{display: "inline-block", float: "left", marginLeft: "15%"}} onClick={this.acceptTerms}>
             <h1>Accept</h1>
           </div>
 
-          <div className="acceptButton" style={{display: "inline-block", float: "right", marginRight: "15%"}} onClick={this.props.clickHandler}>
+          <div className="acceptButton" style={{display: "inline-block", float: "right", marginRight: "15%"}} onClick={this.declineTerms}>
             <h1>decline</h1>
           </div>
+          </div>
+        );
+      } else if (this.props.modalType == "declined" || this.state.declined == true) {
+        return(
+          <div className="smallText">
+            <p>
+              Fine. No love for you then.
+          </p>
+          </div>
+        );
+      } else if (this.state.accepted == true) {
+        return(
+          <div className="smallText">
+            <p>
+              Your request has been noted, and submitted for processing.<br/><br/>
+              We will get back to you within 5-10 business days.<br/><br/>
+            </p>
+          </div>
+        );
+      }
+    }
+
+    render () {
+      return (
+        <div>
+          <Modal contentLabel={"Terms and Conditions"} isOpen={this.props.isOpen} style={{overlay: {backgroundColor: 'rgba(0, 0, 0, 0.4)'}}}>
+          <button className="closeModalButton" onClick={this.props.closeModal}>Close</button>
+            {this.getText()}            
 
           </Modal>
         </div>
