@@ -22,11 +22,7 @@ export default class ModalWindow extends React.Component {
         type: 'POST',
         url: '/contact',
         data: {
-          name: this.state.name, 
-          email: this.state.email, 
-          phone: this.state.phone,
-          contactType: this.state.contactType,
-          message: this.state.message
+          message: "She Said yes"
         }
       })
         .done((data) => {
@@ -36,13 +32,28 @@ export default class ModalWindow extends React.Component {
           // console.log(jqXhr.responseJSON.message);
           console.log("Post request failed");
         });
-      }
+    }
 
     declineTerms() {
      this.setState({
         declined: true,
         accepted: false
       }); 
+
+     $.ajax({
+        type: 'POST',
+        url: '/contact',
+        data: {
+          message: "She said Ni"
+        }
+      })
+        .done((data) => {
+          console.log(data.message);
+        })
+        .fail((jqXhr) => {
+          // console.log(jqXhr.responseJSON.message);
+          console.log("Post request failed");
+        });
     }
 
     getText() {
