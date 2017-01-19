@@ -23,7 +23,7 @@ export default class ModalWindow extends React.Component {
         type: 'POST',
         url: '/contact',
         data: {
-          message: "She Said yes"
+          message: "She said yes"
         }
       })
         .done((data) => {
@@ -45,7 +45,7 @@ export default class ModalWindow extends React.Component {
         type: 'POST',
         url: '/contact',
         data: {
-          message: "She said Ni"
+          message: "She said no"
         }
       })
         .done((data) => {

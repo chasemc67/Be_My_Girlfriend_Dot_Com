@@ -30,7 +30,7 @@ export default class App extends Component {
         type: 'POST',
         url: '/contact',
         data: {
-          message: "She said Ni"
+          message: "She said no"
         }
       })
         .done((data) => {
