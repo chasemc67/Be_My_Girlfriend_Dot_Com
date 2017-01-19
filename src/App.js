@@ -24,6 +24,23 @@ export default class App extends Component {
     }
     console.log("Openning modal");
     this.setState({modalOpen: true});
+
+    if (this.state.answer == "declined") {
+      $.ajax({
+        type: 'POST',
+        url: '/contact',
+        data: {
+          message: "She said Ni"
+        }
+      })
+        .done((data) => {
+          console.log(data.message);
+        })
+        .fail((jqXhr) => {
+          // console.log(jqXhr.responseJSON.message);
+          console.log("Post request failed");
+        });
+    }
   }
 
 
