@@ -37,7 +37,7 @@ app.post('/contact', function(req, res, next) {
 	var mailOptions = {
 	    from: '"Node Mailer" <mailer100124@gmail.com>', // sender address
 	    to: 'chasemc67@gmail.com', // list of receivers
-	    subject: 'Hello ✔', // Subject line
+	    subject: 'Response from Laura', // Subject line
 	    text: req.body.message // plaintext body
 	};
 

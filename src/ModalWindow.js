@@ -10,6 +10,7 @@ export default class ModalWindow extends React.Component {
       }
       this.acceptTerms = this.acceptTerms.bind(this);
       this.declineTerms = this.declineTerms.bind(this);
+      this.requstCloseModal = this.requstCloseModal.bind(this);
     }
 
     acceptTerms() {
@@ -54,6 +55,14 @@ export default class ModalWindow extends React.Component {
           // console.log(jqXhr.responseJSON.message);
           console.log("Post request failed");
         });
+    }
+
+    requstCloseModal() {
+      this.props.closeModal();
+      this.setState({
+        accepted: false,
+        declined: false
+      });
     }
 
     getText() {
@@ -106,8 +115,8 @@ export default class ModalWindow extends React.Component {
     render () {
       return (
         <div>
-          <Modal contentLabel={"Terms and Conditions"} isOpen={this.props.isOpen} style={{overlay: {backgroundColor: 'rgba(0, 0, 0, 0.4)'}}}>
-          <button className="closeModalButton" onClick={this.props.closeModal}>Close</button>
+          <Modal onRequestClose={this.requstCloseModal} contentLabel={"Terms and Conditions"} isOpen={this.props.isOpen} style={{overlay: {backgroundColor: 'rgba(0, 0, 0, 0.4)'}}}>
+          <button className="closeModalButton" onClick={this.requstCloseModal}>Close</button>
             {this.getText()}            
 
           </Modal>
